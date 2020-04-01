@@ -1,0 +1,43 @@
+<%- include('header'); -%>
+    
+ 
+        <div class="box" id="heading">
+
+            <% if(param == "default"){ %>
+                <h2>Today!</h2>
+              <% } else{ %>  
+                <h2><%= param %></h2>
+             <% } %>
+             
+        </div>
+        
+
+        <div class="box">
+
+            <div class="item">
+                <% items.forEach(function(item) {  %>
+                <form method="POST" action="/delete">
+                    <div class="item">
+                    <input name="_id" type="checkbox" onchange="this.form.submit()" value="<%= item._id %>">
+                    <p>
+                        <%= item.name %>
+                    </p>
+                    </div>
+                    <input type="hidden" name="typename" value="<%= param %>" >
+                </form>
+                <% }); %> 
+                
+                </div>
+       
+
+        <form method="POST" action="/" class="box">
+
+            <input type="text" name="newItem" placeholder="New item" autocomplete="off">
+
+            <button type="submit" name="list" value="<%= param %>">+</button>
+
+        </form>
+         </div>
+
+
+<%- include('footer'); -%>
