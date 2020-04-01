@@ -2,8 +2,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
 const _ = require('lodash');
-const port = 3000;
 const app = express();
+
+
 
 const user = 'todolist-app';
 const pass = 'pass01';
@@ -130,5 +131,9 @@ app.post("/delete",function(req,res){
 
 // End 
 
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
 
 app.listen(port, () => console.log(`Server listening on port ${port}!`));
